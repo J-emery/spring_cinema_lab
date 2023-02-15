@@ -29,15 +29,19 @@ public class MovieService {
     }
 
 //method to return all movies shorter than a length
-    public ArrayList<Movie> getAllMoviesShorterThan(Integer dur){
-        ArrayList<Movie> moviesToReturn = new ArrayList<>();
-        List<Movie> listOfMovies = movieRepo.findAll();
-        for (Movie m:listOfMovies){
-            if (m.getDuration()<dur){
-                moviesToReturn.add(m);
-            }
-        }
-        return moviesToReturn;
+    public List<Movie> getAllMoviesShorterThan(Integer dur){
+
+        //Can simplift this using JPARepository, making a new method in the movieRepo for database queries
+        return movieRepo.findByDurationLessThan(dur);
+
+//        ArrayList<Movie> moviesToReturn = new ArrayList<>();
+//        List<Movie> listOfMovies = movieRepo.findAll();
+//        for (Movie m:listOfMovies){
+//            if (m.getDuration()<dur){
+//                moviesToReturn.add(m);
+//            }
+//        }
+//        return moviesToReturn;
     }
 
 //method to return a movie by it's id
